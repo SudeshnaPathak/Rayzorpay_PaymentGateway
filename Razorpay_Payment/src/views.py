@@ -12,7 +12,7 @@ def home(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         amount = int(request.POST.get('amount'))*100
-        client = razorpay.Client(auth=("rzp_test_SdXIlYfGfq7kia", "CdQbJpWxbHZSTB1Ngt6I1nmx"))
+        client = razorpay.Client(auth=("key_id", "key_secret"))
         payment = client.order.create({'amount': amount, 'currency': 'INR', 'payment_capture': '1'})
         pay = Payment(name=name, email=email, amount=amount, payment_id=payment['id'])
         pay.save()
